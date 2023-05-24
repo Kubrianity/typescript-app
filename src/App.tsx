@@ -17,7 +17,11 @@ const App: FC = () => {
     setTask("")
     setDeadline(0)
   }
-
+  const removeTask = (taskToRemove: string): void => {
+    setTaskList(taskList.filter((task) => {
+      return task.taskName !== taskToRemove
+    }))
+  }
   return (
     <main className="App">
       <section className = "header">
@@ -29,7 +33,7 @@ const App: FC = () => {
       </section>
       <section className = "taskList">
         {taskList.map((task: ITask, key: number) => {
-          return <Task key = {key} task = {task} />
+          return <Task key = {key} task = {task} removeTask = {removeTask} />
         })}
       </section>
     </main>
